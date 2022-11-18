@@ -1,7 +1,7 @@
 import { Button, Modal, Form } from 'react-bootstrap';
 import { writedb } from '../../firebase';
-import { useState } from 'react';
-import moment from 'moment'; 
+import React, { useState } from 'react';
+import moment from 'moment';
 import { useAuth } from "../../contexts/AuthContext";
 import PanningComponent from './PanningComponent';
 
@@ -11,42 +11,42 @@ export default function AddTripButton() {
   const { currentUser } = useAuth();
 
   function openModal() {
-    setOpen(true); 
+    setOpen(true);
   }
   function closeModal() {
     setOpen(false);
   }
-  
-  function submitHandler(e) {
-    e.preventDefault();
 
+  function submitHandler(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     const trip = {
       driver: String(currentUser._delegate.email),
-      available_places: String(e.target.available_places.value),
-      origin: String(e.target.origin.value),
-      destin: String(e.target.destin.value),
-      date: String(e.target.date.value),
+      available_places: String(e.currentTarget.available_places.value),
+      origin: String(e.currentTarget.origin.value),
+      destin: String(e.currentTarget.destin.value),
+      date: String(e.currentTarget.date.value),
       passengers: [],
       passengers_requests: [],
     }
-    
-      writedb.trips.add({trip})
-        .then((eventFromDB) => {
-          console.log('event saved', eventFromDB);
-          e.target.reset();
-        })
-        .catch((error) => console.log(error));
-    }
+    console.log(trip)
 
-  let today=moment(Date.now()).format('YYYY-MM-DDThh:mm');
+    writedb.trips.add({ trip })
+      .then((eventFromDB) => {
+        const resetForm = e.target as HTMLFormElement;
+        resetForm.reset();
+      })
+      .catch((error) => console.log(error));
+  }
+
+  let today = moment(Date.now()).format('YYYY-MM-DDThh:mm');
 
   return (
     <>
-    <Button  className="mt-4" onClick={openModal} variant="outline-primary " size="sm" 
-    >
-      post a trip
-    </Button>
-    <Modal show={open} onHide={closeModal}>
+      <Button className="mt-4" onClick={openModal} variant="outline-primary " size="sm"
+      >
+        post a trip
+      </Button>
+      <Modal show={open} onHide={closeModal}>
         <Form onSubmit={submitHandler}>
           <Modal.Body>
             <Form.Group>
@@ -54,7 +54,7 @@ export default function AddTripButton() {
               <Form.Control
                 type="text"
                 name="driver"
-                placeholder={currentUser?currentUser._delegate.email:""}
+                placeholder={currentUser ? currentUser._delegate.email : ""}
                 disabled
               />
               <Form.Label>Passengers</Form.Label>
@@ -71,7 +71,7 @@ export default function AddTripButton() {
                 className="mb-2"
               />
               <div className="square border rounded">
-              <PanningComponent />
+                <PanningComponent />
               </div>
               <Form.Label>Destination</Form.Label>
               <Form.Select name="destin">
@@ -98,6 +98,6 @@ export default function AddTripButton() {
           </Modal.Footer>
         </Form>
       </Modal>
-      </>
+    </>
   )
 }

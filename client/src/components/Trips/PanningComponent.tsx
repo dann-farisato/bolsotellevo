@@ -11,26 +11,26 @@ const center = {
   lng: -56.164436903809175
 };
 
-function MyComponent() {
+function MyComponent(): JSX.Element | null {
 
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCyiPt5yevMeVhaC94BcYE_wcUjievj3Hw"
+    googleMapsApiKey: process.env.GOOGLE_API_KEY as string
   })
 
-  if (!isLoaded) return;
+  if (!isLoaded) return null;
 
   return (
     <>
-    <GoogleMap
+      <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         zoom={10}
-        >
-        { /* Child components, such as markers, info windows, etc. */ }
+      >
+        { /* Child components, such as markers, info windows, etc. */}
       </GoogleMap>
     </>
-    
-    )
-  }
-  
-  export default React.memo(MyComponent)
+
+  )
+}
+
+export default React.memo(MyComponent)
