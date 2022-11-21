@@ -105,7 +105,7 @@ export default function Trip({ trip }: { trip: TripType }, { setTrips }: { setTr
           </>
           :
           <>
-            <AddToTripButton trip={trip} setTrips={setTrips} />
+            <AddToTripButton trip={trip} />
           </>
         }
       </Card>

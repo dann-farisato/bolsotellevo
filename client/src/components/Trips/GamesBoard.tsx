@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { readdb } from "../../firebase";
 import GameList from "./GameList";
 import { Spinner } from 'react-bootstrap';
+import { GameType } from "../../Type";
 
 export default function GamesBoard() {
 
@@ -17,16 +18,17 @@ export default function GamesBoard() {
 
   useEffect(() => {
 
-    let aux;
+    // let aux;
 
     setFiltered([]);
 
     readdb.collection("trips").get()
       .then((querySnapshot) => {
+        let aux: never[] = [];
         querySnapshot.forEach((doc) => {
-          filtered.push(doc.data());
+          filtered.push(doc.data() as never);
         })
-        aux = filtered.filter((object) =>
+        aux = filtered.filter((object: GameType) =>
           object.trip.driver === currentUser._delegate.email);
         setFiltered(aux);
       })
@@ -54,7 +56,7 @@ export default function GamesBoard() {
 
 
             <Container className="flex-column">
-              <GameList nextGames={filtered} setNextgames={setFiltered} />
+              <GameList nextGames={filtered} />
             </Container>
           }
 

@@ -5,25 +5,32 @@ import { Link, useNavigate } from 'react-router-dom';
 import CenteredContainer from './CenteredContainer';
 
 export default function Signup() {
-  const emailRef = useRef();
-  const userNameRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const userNameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const passwordConfirmRef = useRef<HTMLInputElement>(null);
   const { signup } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    if (!passwordRef.current || !passwordConfirmRef.current) {
+      return;
+    }
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError('Passwords do not match');
     }
 
+
     try {
       setError('');
       setLoading(true);
+      if (!emailRef.current || !userNameRef.current) {
+        return;
+      }
       await signup(emailRef.current.value, userNameRef.current.value, passwordRef.current.value);
       navigate('/');
     } catch {
@@ -52,7 +59,7 @@ export default function Signup() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
-            <Form.Group  className="mb-4" id="password-confirm">
+            <Form.Group className="mb-4" id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>

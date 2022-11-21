@@ -19,3 +19,13 @@ export interface DocAndIdType {
     driver: number,
     id: string
 }
+
+export interface LoginType {
+    currentUser: string,
+    login: string,
+    signup: string,
+    logout: string,
+    resetPassword: string,
+    updateEmail: string,
+    updatePassword: string
+}

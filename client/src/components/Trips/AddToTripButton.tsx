@@ -5,7 +5,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useEffect } from 'react';
 import { DocAndIdType, TripType } from '../../Type';
 
-export default function AddToTripButton({ trip }: { trip: TripType }) {
+export default function AddToTripButton({ trip }: { trip: TripType }, { setTrips }: { setTrips: React.Dispatch<React.SetStateAction<TripType[]>> }) {
 
   const [open, setOpen] = useState(false);
   const [docId, setDocId] = useState<DocAndIdType[]>([]);
@@ -38,7 +38,7 @@ export default function AddToTripButton({ trip }: { trip: TripType }) {
     setOpen(false);
   }
 
-  function submitHandler(e: React.MouseEventHandler<HTMLButtonElement>) {
+  function submitHandler(e: { preventDefault: () => void }) {
     e.preventDefault();
     (trip.passengers_requests).push(currentUser.email);
     const docRef = readdb.collection('trips').doc(docId[0].id);
@@ -52,7 +52,7 @@ export default function AddToTripButton({ trip }: { trip: TripType }) {
         console.error("Error updating document: ", error);
       });
 
-    // setTrips((prevTrips) => [...prevTrips])
+    setTrips((prevTrips) => [...prevTrips])
 
   }
 
