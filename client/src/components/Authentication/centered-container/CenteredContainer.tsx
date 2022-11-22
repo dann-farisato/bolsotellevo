@@ -8,7 +8,7 @@ export default function CenteredContainer({ children }: { children: React.ReactN
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}
       >
-        <div className="w-100" style={{ maxWidth: "400px" }}>
+        <div data-testId="my-div" className="text-center mt-4 name w-100" style={{ maxWidth: "400px" }}>
           {children}
         </div>
       </Container>

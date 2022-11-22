@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-import CenteredContainer from './CenteredContainer';
+import CenteredContainer from './centered-container/CenteredContainer';
 
 export default function Signup() {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -31,7 +31,7 @@ export default function Signup() {
       if (!emailRef.current || !userNameRef.current) {
         return;
       }
-      await signup(emailRef.current.value, userNameRef.current.value, passwordRef.current.value);
+      await signup(emailRef.current.value, passwordRef.current.value);
       navigate('/');
     } catch {
       setError('Failed to create an account');

@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { readdb } from "../../firebase";
 import TripList from "./TripList";
 import { Spinner } from 'react-bootstrap';
-import CenteredContainer from '../Authentication/CenteredContainer'
+import CenteredContainer from '../Authentication/centered-container/CenteredContainer'
 import { DocumentData } from '@firebase/firestore-types'
 
 

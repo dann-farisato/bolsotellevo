@@ -2,12 +2,17 @@ import { useRef, useState } from 'react';
 import { Form, Button, Card, Alert, Navbar } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'react-router-dom';
-import CenteredContainer from './CenteredContainer';
+import CenteredContainer from './centered-container/CenteredContainer';
 
 export default function ForgotPassword() {
   const emailRef = useRef<HTMLInputElement>(null)
   console.log('console from forgot password', emailRef)
-  const { resetPassword } = useAuth()
+  const auth = useAuth();
+  let password: string | null = null;
+  // if (auth) {
+  //   const { resetPassword } = auth;
+  //   password = resetPassword;
+  // }
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
@@ -22,7 +27,7 @@ export default function ForgotPassword() {
       setMessage("")
       setError("")
       setLoading(true)
-      await resetPassword(emailRef.current.value)
+      password && password
       setMessage("Check your inbox for further instructions")
     } catch {
       setError("Failed to reset password")

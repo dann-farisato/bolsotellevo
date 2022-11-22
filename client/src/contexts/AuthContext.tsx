@@ -1,32 +1,52 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
-import { LoginType } from "../Type";
+import 'firebase/firebase-auth-compat'
+import {
+  Auth,
+  UserCredential,
+  User,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+  onAuthStateChanged
+} from 'firebase/auth'
 
-const AuthContext = React.createContext<LoginType | null>(null);
-;
+const AuthContext = React.createContext<LoginType>({} as LoginType)
 
 export function useAuth() {
   return useContext(AuthContext)
 }
+export interface LoginType {
+  currentUser: any,
+  login: (email: string, password: string) => Promise<UserCredential>,
+  signup: (email: string, password: string) => Promise<UserCredential>,
+  logout: () => Promise<void> | void,
+  resetPassword: (email: string) => Promise<void> | void,
+  updateEmail: (email: string) => any,
+  updatePassword: (password: string) => any
+}
+
+
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState() as any;
   const [loading, setLoading] = useState(true)
 
   function signup(email: string, password: string) {
-    return auth.createUserWithEmailAndPassword(email, password)
+    return createUserWithEmailAndPassword(auth, email, password)
   }
 
   function login(email: string, password: string) {
-    return auth.signInWithEmailAndPassword(email, password)
+    return signInWithEmailAndPassword(auth, email, password)
   }
 
   function logout() {
-    return auth.signOut()
+    return signOut(auth)
   }
 
   function resetPassword(email: string) {
-    return auth.sendPasswordResetEmail(email)
+    return sendPasswordResetEmail(auth, email)
   }
 
   function updateEmail(email: string) {
@@ -38,7 +58,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
       setCurrentUser(user)
       setLoading(false)
     })
@@ -46,12 +66,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return unsubscribe
   }, [])
 
-  // const value = {
-
-  // }
+  const value = {
+    currentUser,
+    login,
+    signup,
+    logout,
+    resetPassword,
+    updateEmail,
+    updatePassword
+  }
 
   return (
-    <AuthContext.Provider value={ }>
+    <AuthContext.Provider value={value}>
       {!loading && children}
     </AuthContext.Provider>
   )
