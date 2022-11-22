@@ -10,6 +10,7 @@ import Profile from './components/Authentication/Profile';
 import TripsBoard from './components/Trips/TripsBoard';
 import GamesBoard from './components/Trips/GamesBoard';
 import Requests from './components/Trips/Requests';
+import NewUI from './components/NewUI';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </AuthProvider>
+      <NewUI />
     </BrowserRouter>
   )
 }

@@ -3,11 +3,11 @@ import { useAuth } from "../../contexts/AuthContext";
 
 export default function PrivateRoute({ children }: { children: React.ReactNode }) {
 
-  const { Currentuser } = useAuth();
+  const { currentUser } = useAuth();
 
-  console.log("user:", Currentuser);
+  console.log("user:", currentUser);
 
-  if (!Currentuser) return <Navigate to="/login" />;
+  if (!currentUser) return <Navigate to="/login" />;
 
   return <>{children}</>;
 

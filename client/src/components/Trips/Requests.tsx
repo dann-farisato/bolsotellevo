@@ -10,16 +10,24 @@ import { Spinner } from 'react-bootstrap';
 import CenteredContainer from '../Authentication/centered-container/CenteredContainer'
 import { DocumentData } from '@firebase/firestore-types'
 
-
+export interface TripType {
+  passengers: any,
+  trip: string,
+  destin: string,
+  date: any,
+  passengers_requests: string[],
+  driver: string,
+  available_places: number
+}
 export default function Requests() {
 
-  const [yourTrips, setYourtrips] = useState<DocumentData[]>([]);
+  const [yourTrips, setYourtrips] = useState<TripType[]>({} as TripType[]);
 
   useEffect(() => {
 
     readdb.collection("trips").get()
       .then((querySnapshot) => {
-        let trips: DocumentData[] = [];
+        let trips: any;
         querySnapshot.forEach((doc) => {
           trips.push(doc.data());
         })
