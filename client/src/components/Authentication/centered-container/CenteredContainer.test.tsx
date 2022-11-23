@@ -7,7 +7,7 @@ import Login from '../Login';
 //     beforeEach(() => {
 //         container = createElement('div');
 //         document.body.appendChild(container);
-//         REACTDOM.render(<Container children={undefined} />, container);
+//         ReactDOM.render(<Container children={undefined} />, container);
 //     })
 //     afterEach(() => {
 //         document.body.removeChild(container);

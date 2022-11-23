@@ -35,29 +35,43 @@ export default function Login() {
     <div className='bg-light'>
 
       <CenteredContainer>
-        <Card>
+        <Card className="container h-100 text-white">
           <Card.Body>
-            <h2 className="text-center mb-4 ">Log In</h2>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <Form onSubmit={handleSubmit}>
-              <Form.Group id="email">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" ref={emailRef} required />
-              </Form.Group>
-              <Form.Group id="username">
-                <Form.Label>User Name</Form.Label>
-                <Form.Control type="username" ref={userNameRef} required />
-              </Form.Group>
-              <Form.Group id="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" ref={passwordRef} required />
-              </Form.Group>
-              <Button disabled={loading} className="w-100 mt-4" type="submit">
-                Log In
-              </Button>
-            </Form>
-            <div className="w-100 text-center mt-3">
-              <Link to="/forgot-password">Forgot Password?</Link>
+            <div className="container h-100 text-white">
+              <div className="row d-flex align-items-center h-100 position-absolute">
+                <div className="col-md-5 offset-md-1 position-relative align-items-md-center">
+                  <div id="shape-1" className="position-absolute strong-5-strong"></div>
+                  <div id="shape-2" className="position-absolute strong-5-strong"></div>
+                  <div id="card-custom" className="card-group shadow-6 ">
+                    <div className="card-body p-5 opacity-90 align-items-center">
+                      <h2 className="text-center mb-4 ">Log In</h2>
+                      {error && <Alert variant="danger">{error}</Alert>}
+                    </div>
+                    <Form onSubmit={handleSubmit}>
+                      <Form.Group id="email">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type="email" ref={emailRef} required />
+                      </Form.Group>
+                      <Form.Group id="username">
+                        <Form.Label>User Name</Form.Label>
+                        <Form.Control type="username" ref={userNameRef} required />
+                      </Form.Group>
+                      <Form.Group id="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" ref={passwordRef} required />
+                      </Form.Group>
+                      <Button disabled={loading} className="w-100 mt-4" type="submit">
+                        Log In
+                      </Button>
+                    </Form>
+                    <div className="w-100 text-center mt-3">
+                      <Link to="/forgot-password">Forgot Password?</Link>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
             </div>
           </Card.Body>
         </Card>

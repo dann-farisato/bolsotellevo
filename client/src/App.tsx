@@ -38,7 +38,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </AuthProvider>
-      <NewUI />
+      {/* <NewUI /> */}
     </BrowserRouter>
   )
 }
