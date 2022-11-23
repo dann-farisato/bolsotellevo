@@ -1,9 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import Navbar from '../Navbar';
+import { defineConfig } from "cypress";
 
-
-test('renders Navbar component: ', () => {
-    render(<Navbar />);
-    const linkElement = screen.getAllByRole('listitem')
-    expect(linkElement).toBeInTheDocument()
-})
+export default defineConfig({
+    e2e: {
+        setupNodeEvents(on, config) {
+            // implement node event listeners here
+            console.log('test this')
+        },
+    },
+});

@@ -36,7 +36,7 @@ export default function Game({ nextGame }: { nextGame: GameType }) {
                       </Container>
                       <Container className="d-flex">
                         <Container>
-                          <Image className="mb-2" height={30} src={require(`../../logos/${nextGame.Team}.png`)} alt="icon" />
+                          <Image className="mb-2" height={30} src={require(`../../logos/Nacional.png`)} alt="icon" />
                         </Container>
                         <Container>
                           <p>{nextGame.Team}</p>
@@ -59,19 +59,19 @@ export default function Game({ nextGame }: { nextGame: GameType }) {
                 :
                 <>
                   <Container className="mt-4 ms-4">
-                    {String(nextGame.trip.trip.destin)}
+                    {String(nextGame)}
                   </Container>
 
                   <Container className="d-flex">
                     <Container className="ms-4 mt-2">
-                      <Image className="mb-2" height={30} src={require(`../../logos/${nextGame.trip.trip.destin}.png`)} alt="icon" />
+                      <Image className="mb-2" height={30} src={require(`../../logos/Nacional.png`)} alt="icon" />
                     </Container>
                     <Container>
 
                       {(nextGame.trip.passengers.length === 0) ? " You have no passengers yet" :
                         <Container>
                           <h4>Your pasengers:</h4>
-                          {(nextGame.trip.passengers).map((element, key) => <p key={key}>{element}</p>)}
+                          {(nextGame.trip.trip.passengers).map((element, key) => <p key={key}>{element}</p>)}
                         </Container>
                       }
                       <Container className="mb-4">

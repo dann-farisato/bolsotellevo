@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { readdb } from "../../firebase";
 import GameList from "./GameList";
 import { Spinner } from 'react-bootstrap';
-import { GameType } from "../../Type";
+import { GameType, TripsFromFB } from "../../Type";
 
 export default function GamesBoard() {
 
@@ -28,8 +28,10 @@ export default function GamesBoard() {
         querySnapshot.forEach((doc) => {
           filtered.push(doc.data() as never);
         })
-        aux = filtered.filter((object: GameType) =>
-          object.trip.trip.driver === currentUser._delegate.email);
+        aux = filtered.filter((object: TripsFromFB) => {
+          console.log('filter object', object)
+          return object.trip.driver === currentUser.email
+        });
         setFiltered(aux);
       })
       .catch((error) => console.log("Error getting documents: ", error));
