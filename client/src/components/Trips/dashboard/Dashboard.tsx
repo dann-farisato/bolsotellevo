@@ -7,6 +7,7 @@ import { readdb } from "../../../firebase";
 import GameList from '../GameList';
 import { Spinner } from 'react-bootstrap';
 import { GameType } from "../../../Type";
+import './dashboard.component.css'
 
 
 export default function Dashboard() {

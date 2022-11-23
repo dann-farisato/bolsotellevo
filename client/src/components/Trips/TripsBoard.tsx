@@ -23,7 +23,7 @@ export default function TripsBoard() {
         querySnapshot.forEach((doc) => {
           trips.push(doc.data() as TripType);
         })
-        setTrips(trips.filter((element: GameType) => element.trip.destin === currentGame));
+        setTrips(trips.filter((element: GameType) => element.trip.trip.destin === currentGame));
       })
       .catch((error) => console.log("Error getting documents: ", error));
   }, []);

@@ -25,7 +25,7 @@ export default function NavbarComponent() {
       .catch((error) => console.log("Error getting documents: ", error));
   }, []);
 
-  console.log('navbar state', trips)
+  console.log('navbar state', currentUser)
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -43,7 +43,7 @@ export default function NavbarComponent() {
                 </Nav.Link>
                 :
                 <Nav.Link as={Link} to="/user">
-                  {!currentUser ? "" : currentUser._delegate.email}
+                  {!currentUser ? "" : currentUser._delegate ? currentUser._delegate.email : currentUser.email}
                 </Nav.Link>
             }
           </Nav>
@@ -53,7 +53,7 @@ export default function NavbarComponent() {
                 ""
                 :
 
-                ((trips.filter((object) => object.trip.driver === currentUser._delegate.email).length)) ?
+                ((trips.filter((object) => object.trip.driver === currentUser.email).length)) ?
                   <Nav.Link as={Link} to="/user/next">
                     <>See your next games</>
                   </Nav.Link>
@@ -64,9 +64,9 @@ export default function NavbarComponent() {
               !currentUser ?
                 ""
                 :
-                ((trips.filter((object) => (object.trip.driver === currentUser._delegate.email) && (object.trip.passengers_requests.length > 0)).length)) ?
+                ((trips.filter((object) => (object.trip.driver === currentUser.email) && (object.trip.passengers_requests.length > 0)).length)) ?
                   <Nav.Link as={Link} to="/user/requests">
-                    <>You have {(trips.filter((object) => (object.trip.driver === currentUser._delegate.email) && (object.trip.passengers_requests.length > 0)).length)} new request{(trips.filter((object) => (object.trip.driver === currentUser._delegate.email) && (object.trip.passengers_requests.length > 0)).length) > 1 ? "s" : ""}</>
+                    <>You have {(trips.filter((object) => (object.trip.driver === currentUser.email) && (object.trip.passengers_requests.length > 0)).length)} new request{(trips.filter((object) => (object.trip.driver === currentUser._delegate.email) && (object.trip.passengers_requests.length > 0)).length) > 1 ? "s" : ""}</>
                   </Nav.Link>
                   :
                   <></>

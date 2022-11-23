@@ -27,7 +27,6 @@ export default function ForgotPassword() {
       setMessage("")
       setError("")
       setLoading(true)
-      password && password
       setMessage("Check your inbox for further instructions")
     } catch {
       setError("Failed to reset password")

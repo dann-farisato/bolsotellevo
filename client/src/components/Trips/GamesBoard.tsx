@@ -29,7 +29,7 @@ export default function GamesBoard() {
           filtered.push(doc.data() as never);
         })
         aux = filtered.filter((object: GameType) =>
-          object.trip.driver === currentUser._delegate.email);
+          object.trip.trip.driver === currentUser._delegate.email);
         setFiltered(aux);
       })
       .catch((error) => console.log("Error getting documents: ", error));

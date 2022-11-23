@@ -7,12 +7,18 @@ export type GameType = {
 }
 export interface TripType {
     passengers: string[],
-    trip: string,
+    trip: TripDetails,
+
+    passengers_requests: string[],
+
+}
+
+export interface TripDetails {
     destin: string,
     date: any,
-    passengers_requests: string[],
     driver: string,
-    available_places: number
+    available_places: number,
+    origin?: any
 }
 
 export interface DocAndIdType {

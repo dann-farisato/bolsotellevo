@@ -21,7 +21,8 @@ export default function Login() {
 
     try {
       setError('');
-      setLoading(true);;
+      setLoading(true);
+      console.log(emailRef.current.value)
       await login(emailRef.current.value, passwordRef.current.value);
       navigate("/");
     } catch {

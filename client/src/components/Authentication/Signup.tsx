@@ -21,7 +21,8 @@ export default function Signup() {
     }
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError('Passwords do not match');
+      setError('Passwords do not match');
+      return
     }
 
 
@@ -31,6 +32,7 @@ export default function Signup() {
       if (!emailRef.current || !userNameRef.current) {
         return;
       }
+      console.log(emailRef.current.value, passwordRef.current.value)
       await signup(emailRef.current.value, passwordRef.current.value);
       navigate('/');
     } catch {

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth } from "../firebase"
-import 'firebase/firebase-auth-compat'
+// import 'firebase/firebase-auth-compat'
 import {
   UserCredential,
   createUserWithEmailAndPassword,

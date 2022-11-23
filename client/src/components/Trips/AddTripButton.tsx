@@ -20,7 +20,7 @@ export default function AddTripButton() {
   function submitHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const trip = {
-      driver: String(currentUser._delegate.email),
+      driver: String(currentUser.email),
       available_places: String(e.currentTarget.available_places.value),
       origin: String(e.currentTarget.origin.value),
       destin: String(e.currentTarget.destin.value),
@@ -54,7 +54,7 @@ export default function AddTripButton() {
               <Form.Control
                 type="text"
                 name="driver"
-                placeholder={currentUser ? currentUser._delegate.email : ""}
+                placeholder={currentUser ? currentUser.email : ""}
                 disabled
               />
               <Form.Label>Passengers</Form.Label>

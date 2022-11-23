@@ -11,7 +11,7 @@ export default function AddToTripButton({ trip }: { trip: TripType }, { setTrips
   const [docId, setDocId] = useState<DocAndIdType[]>([]);
   const { currentUser } = useAuth();
 
-  const driver = trip.driver;
+  const driver = trip.trip.driver;
 
   useEffect(() => {
     readdb.collection("trips").where("trip", "!=", "").get()
@@ -60,23 +60,23 @@ export default function AddToTripButton({ trip }: { trip: TripType }, { setTrips
     <>
       <Button className="mt-4" onClick={openModal} variant="outline-primary mb-2" size="sm"
       >
-        Join {trip.driver}
+        Join {trip.trip.driver}
       </Button>
       <Modal show={open} onHide={closeModal}>
         <Form onSubmit={submitHandler}>
           <Modal.Body>
             <h2>Trip Details:</h2>
-            <p>Destin: {String(trip.destin)}</p>
-            <p>Driver: {String(trip.driver)}</p>
-            <p>Available spots: {String(trip.available_places)}</p>
-            <p>Date: {String(trip.date)}</p>
+            <p>Destin: {String(trip.trip.destin)}</p>
+            <p>Driver: {String(trip.trip.driver)}</p>
+            <p>Available spots: {String(trip.trip.available_places)}</p>
+            <p>Date: {String(trip.trip.date)}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={closeModal}>
               Close
             </Button>
             <Button variant="success" type="submit">
-              Ask {trip.driver} to join
+              Ask {trip.trip.driver} to join
             </Button>
           </Modal.Footer>
         </Form>

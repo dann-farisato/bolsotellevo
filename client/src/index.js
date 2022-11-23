@@ -1,5 +1,9 @@
-// console.log('me lambe');
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+const root = ReactDOM.createRoot(document.getElementById('root'))
 
-// gsap.from("body", { opacity: 0, y: 100, duration: 2 });
-// gsap.from("#shape-1", { opacity: 0, y: 100, duration: 2 });
-// gsap.from("#shape-2", { opacity: 0, y: -100, duration: 2 });
+root.render(
+    <App />
+)

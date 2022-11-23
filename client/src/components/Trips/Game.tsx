@@ -59,12 +59,12 @@ export default function Game({ nextGame }: { nextGame: GameType }) {
                 :
                 <>
                   <Container className="mt-4 ms-4">
-                    {String(nextGame.trip.destin)}
+                    {String(nextGame.trip.trip.destin)}
                   </Container>
 
                   <Container className="d-flex">
                     <Container className="ms-4 mt-2">
-                      <Image className="mb-2" height={30} src={require(`../../logos/${nextGame.trip.destin}.png`)} alt="icon" />
+                      <Image className="mb-2" height={30} src={require(`../../logos/${nextGame.trip.trip.destin}.png`)} alt="icon" />
                     </Container>
                     <Container>
 
@@ -75,7 +75,7 @@ export default function Game({ nextGame }: { nextGame: GameType }) {
                         </Container>
                       }
                       <Container className="mb-4">
-                        Time of the trip: {nextGame.trip.date}
+                        Time of the trip: {nextGame.trip.trip.date}
                       </Container>
 
                     </Container>
