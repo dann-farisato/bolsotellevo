@@ -9,6 +9,8 @@ type TripListProps = {
 }
 export default function TripList({ trips, setTrips }: TripListProps) {
 
+  console.log(trips)
+
   return (
 
     <div className="d-flex flex-column">

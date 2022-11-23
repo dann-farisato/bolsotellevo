@@ -7,7 +7,7 @@ import { readdb } from "../../firebase";
 import TripList from "./TripList";
 import { useParams } from "react-router-dom";
 import { DocumentData } from '@firebase/firestore-types'
-import { GameType, TripType } from "../../Type";
+import { GameType, TripType, TripsFromFB } from "../../Type";
 
 export default function TripsBoard() {
 
@@ -19,11 +19,13 @@ export default function TripsBoard() {
 
     readdb.collection("trips").where("trip", "!=", "").get()
       .then((querySnapshot) => {
+        console.log('trips : ', querySnapshot)
         let trips: DocumentData = [];
-        querySnapshot.forEach((doc) => {
+        querySnapshot.docs.forEach((doc) => {
           trips.push(doc.data() as TripType);
         })
-        setTrips(trips.filter((element: GameType) => element.trip.trip.destin === currentGame));
+        console.log(trips)
+        setTrips(trips.filter((element: TripsFromFB) => element.trip.destin === currentGame));
       })
       .catch((error) => console.log("Error getting documents: ", error));
   }, []);

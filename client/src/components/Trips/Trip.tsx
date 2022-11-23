@@ -4,15 +4,16 @@ import { useAuth } from "../../contexts/AuthContext";
 import { Button } from "react-bootstrap";
 import { readdb } from "../../firebase";
 import { useState, useEffect } from "react";
-import { DocAndIdType, TripType } from "../../Type";
+import { DocAndIdType, TripDetails, TripsFromFB, TripType } from "../../Type";
 
 
-export default function Trip({ trip }: { trip: TripType }, { setTrips }: { setTrips: React.Dispatch<React.SetStateAction<TripType[]>> }) {
+export default function Trip({ trip }: { trip: TripsFromFB }, { setTrips }: { setTrips: React.Dispatch<React.SetStateAction<TripType[]>> }) {
 
   const { currentUser } = useAuth();
   const [docId, setDocId] = useState<DocAndIdType[]>([]);
-  let passengers_requests = trip.passengers_requests;
+  let passengers_requests = trip.trip.passengers_requests;
   const driver = trip.trip.driver;
+  console.log('TRIP COMP : ', trip)
 
   useEffect(() => {
     readdb.collection("trips").where("trip", "!=", "").get()
@@ -40,7 +41,7 @@ export default function Trip({ trip }: { trip: TripType }, { setTrips }: { setTr
     e.preventDefault()
     const newPassenger: string = e.currentTarget.value;
     [passengers_requests].splice([passengers_requests].findIndex(() => newPassenger), 1);
-    trip.passengers.push(newPassenger);
+    trip.trip.passengers.push(newPassenger);
 
     const docRef = readdb.collection('trips').doc(docId[0].id);
 
@@ -74,10 +75,10 @@ export default function Trip({ trip }: { trip: TripType }, { setTrips }: { setTr
           <p>{String(trip.trip.driver)}</p>
           <p>{String(trip.trip.available_places)}</p>
         </Container>
-        {currentUser._delegate.email === trip.trip.driver ?
+        {currentUser.email === trip.trip.driver ?
           <>
             <p>Your requests:</p>
-            {(trip.passengers_requests).map((element, key) => {
+            {(trip.trip.passengers_requests).map((element, key) => {
               return (
                 <Container key={key} className="d-flex justify-content-end">
                   {element}

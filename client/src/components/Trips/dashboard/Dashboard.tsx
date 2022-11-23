@@ -33,7 +33,7 @@ export default function Dashboard() {
       <Navbar />
 
       <Container className="container h-100 text-white" >
-        <div className="row d-flex align-items-center h-100">
+        <div className="row d-flex align-items-center h-100" id="dashboard">
           <Container className="col-md-6">
             <h1 className="mb-4 opacity-90" >Post a Trip</h1>
             <AddTripButton></AddTripButton>
@@ -66,7 +66,7 @@ export default function Dashboard() {
       {/* my css */}
 
 
-      <div className="container h-100 text-white">
+      {/* <div className="container h-100 text-white">
         <div className="row d-flex align-items-center h-100">
           <div className="col-md-6">
             <h1 className="mb-4 opacity-90" >Post a Trip</h1>
@@ -91,7 +91,7 @@ export default function Dashboard() {
           </div>
 
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

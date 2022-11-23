@@ -8,7 +8,6 @@ export type GameType = {
 export interface TripType {
     passengers: string[],
     trip: TripDetails,
-
     passengers_requests: string[],
 
 }
@@ -18,7 +17,13 @@ export interface TripDetails {
     date: any,
     driver: string,
     available_places: number,
-    origin?: any
+    origin: any
+    passengers: string[],
+    passengers_requests: string[],
+}
+
+export interface TripsFromFB {
+    trip: TripDetails
 }
 
 export interface DocAndIdType {
