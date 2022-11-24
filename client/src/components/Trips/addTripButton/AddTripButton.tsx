@@ -1,9 +1,9 @@
 import { Button, Modal, Form } from 'react-bootstrap';
-import { writedb } from '../../firebase';
+import { writedb } from '../../../firebase';
 import React, { useState } from 'react';
 import moment from 'moment';
-import { useAuth } from "../../contexts/AuthContext";
-import PanningComponent from './PanningComponent';
+import { useAuth } from "../../../contexts/AuthContext";
+import PanningComponent from '../panningComponent/PanningComponent';
 
 export default function AddTripButton() {
 

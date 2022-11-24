@@ -1,13 +1,13 @@
 import { Container } from "react-bootstrap";
-import { useAuth } from "../../contexts/AuthContext";
-import AddTripButton from "./AddTripButton";
-import Navbar from "./Navbar";
+import { useAuth } from "../../../contexts/AuthContext";
+import AddTripButton from "../addTripButton/AddTripButton";
+import Navbar from "../navbar/Navbar";
 import { useState } from "react";
 import { useEffect } from "react";
-import { readdb } from "../../firebase";
-import GameList from "./GameList";
+import { readdb } from "../../../firebase";
+import GameList from "../gameList/GameList";
 import { Spinner } from 'react-bootstrap';
-import { GameType, TripsFromFB } from "../../Type";
+import { GameType, TripsFromFB } from "../../../Type";
 
 export default function GamesBoard() {
 

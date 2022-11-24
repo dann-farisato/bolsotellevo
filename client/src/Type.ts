@@ -2,7 +2,7 @@ export type GameType = {
     Team: string,
     Date: any,
     Location: string,
-    trip: TripType,
+    trip: TripDetails,
     Drivers: string
 }
 export interface TripType {
@@ -27,7 +27,7 @@ export interface TripsFromFB {
 }
 
 export interface DocAndIdType {
-    driver: number,
+    driver: string,
     id: string
 }
 

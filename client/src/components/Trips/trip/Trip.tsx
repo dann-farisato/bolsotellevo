@@ -1,13 +1,16 @@
 import { Container, Card } from "react-bootstrap"
-import AddToTripButton from "./AddToTripButton";
-import { useAuth } from "../../contexts/AuthContext";
+import AddToTripButton from "../addToTripButton/AddToTripButton";
+import { useAuth } from "../../../contexts/AuthContext";
 import { Button } from "react-bootstrap";
-import { readdb } from "../../firebase";
+import { readdb } from "../../../firebase";
 import { useState, useEffect } from "react";
-import { DocAndIdType, TripDetails, TripsFromFB, TripType } from "../../Type";
+import { DocAndIdType, TripDetails, TripsFromFB, TripType } from "../../../Type";
 
-
-export default function Trip({ trip }: { trip: TripsFromFB }, { setTrips }: { setTrips: React.Dispatch<React.SetStateAction<TripType[]>> }) {
+type Props = {
+  trip: TripsFromFB,
+  setTrips: React.Dispatch<React.SetStateAction<TripsFromFB[]>>
+}
+export default function Trip({ trip, setTrips }: Props) {
 
   const { currentUser } = useAuth();
   const [docId, setDocId] = useState<DocAndIdType[]>([]);
@@ -27,7 +30,7 @@ export default function Trip({ trip }: { trip: TripsFromFB }, { setTrips }: { se
           setDocId(prevStat => [...prevStat, docAndId])
         })
 
-        setDocId(docId.filter((object) => object.driver === driver as unknown as number));
+        setDocId(docId.filter((object) => object.driver === driver));
 
       })
       .catch((error) => console.log("Error getting documents: ", error));
@@ -108,7 +111,7 @@ export default function Trip({ trip }: { trip: TripsFromFB }, { setTrips }: { se
           </>
           :
           <>
-            <AddToTripButton trip={trip} />
+            <AddToTripButton trip={trip} setTrips={setTrips} />
           </>
         }
       </Card>

@@ -1,35 +1,51 @@
 import { Button, Modal, Form, Container } from 'react-bootstrap';
-import { writedb, readdb } from '../../firebase';
+import { writedb, readdb } from '../../../firebase';
 import React, { useState } from 'react';
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import { useEffect } from 'react';
-import { DocAndIdType, TripsFromFB, TripType } from '../../Type';
+import { DocAndIdType, TripsFromFB, TripType } from '../../../Type';
 
-export default function AddToTripButton({ trip }: { trip: TripsFromFB }, { setTrips }: { setTrips: React.Dispatch<React.SetStateAction<TripType[]>> }) {
+type Props = {
+  trip: TripsFromFB,
+  setTrips: React.Dispatch<React.SetStateAction<TripsFromFB[]>>
+}
+
+export default function AddToTripButton({ trip, setTrips }: Props) {
 
   const [open, setOpen] = useState(false);
   const [docId, setDocId] = useState<DocAndIdType[]>([]);
   const { currentUser } = useAuth();
 
-  const driver = trip.trip.driver;
+  const driver: string = trip.trip.driver;
+
+  console.log('driver', driver);
 
   useEffect(() => {
     readdb.collection("trips").where("trip", "!=", "").get()
       .then((querySnapshot) => {
 
         querySnapshot.forEach((ele) => {
+          console.log('ele', ele.data());
           const docAndId = {
             driver: ele.data().trip.driver,
             id: ele.id
           }
+          console.log('Adding to doc id', docAndId);
           setDocId(prevState => [...prevState, docAndId]);
         })
 
-        setDocId(docId.filter((object) => object.driver === driver as unknown as number));
+        setDocId(prevState => prevState.filter((object) => {
+          console.log('object.driver', object.driver, 'driver', driver);
+          return object.driver === driver
+        }));
 
       })
       .catch((error) => console.log("Error getting documents: ", error));
   }, []);
+
+  useEffect(() => {
+    console.log('docId', docId);
+  }, [docId]);
 
   function openModal() {
     setOpen(true);
@@ -41,6 +57,7 @@ export default function AddToTripButton({ trip }: { trip: TripsFromFB }, { setTr
   function submitHandler(e: { preventDefault: () => void }) {
     e.preventDefault();
     (trip.trip.passengers_requests).push(currentUser.email);
+    console.log('hello', docId);
     const docRef = readdb.collection('trips').doc(docId[0].id);
     docRef.update(
       trip

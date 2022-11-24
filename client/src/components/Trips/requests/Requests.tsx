@@ -1,15 +1,15 @@
 import { Container } from "react-bootstrap";
-import { useAuth } from "../../contexts/AuthContext";
-import AddTripButton from "./AddTripButton";
-import Navbar from "./Navbar";
+import { useAuth } from "../../../contexts/AuthContext";
+import AddTripButton from "../addTripButton/AddTripButton";
+import Navbar from "../navbar/Navbar";
 import { useState } from "react";
 import { useEffect } from "react";
-import { readdb } from "../../firebase";
-import TripList from "./TripList";
+import { readdb } from "../../../firebase";
+import TripList from "../tripList/TripList";
 import { Spinner } from 'react-bootstrap';
-import CenteredContainer from '../Authentication/centered-container/CenteredContainer'
+import CenteredContainer from '../../Authentication/centered-container/CenteredContainer'
 import { DocumentData } from '@firebase/firestore-types'
-import { TripType } from "../../Type";
+import { TripsFromFB, TripType } from "../../../Type";
 
 // export interface TripType {
 //   passengers: any,
@@ -22,7 +22,7 @@ import { TripType } from "../../Type";
 // }
 export default function Requests() {
 
-  const [yourTrips, setYourtrips] = useState<TripType[]>({} as TripType[]);
+  const [yourTrips, setYourtrips] = useState<TripsFromFB[]>({} as TripsFromFB[]);
 
   useEffect(() => {
 

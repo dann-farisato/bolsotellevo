@@ -1,17 +1,17 @@
 import { Container } from "react-bootstrap";
-import AddTripButton from "./AddTripButton";
-import Navbar from "./Navbar";
+import AddTripButton from "../addTripButton/AddTripButton";
+import Navbar from "../navbar/Navbar";
 import { useState } from "react";
 import { useEffect } from "react";
-import { readdb } from "../../firebase";
-import TripList from "./TripList";
+import { readdb } from "../../../firebase";
+import TripList from "../tripList/TripList";
 import { useParams } from "react-router-dom";
 import { DocumentData } from '@firebase/firestore-types'
-import { GameType, TripType, TripsFromFB } from "../../Type";
+import { GameType, TripType, TripsFromFB } from "../../../Type";
 
 export default function TripsBoard() {
 
-  const [trips, setTrips] = useState<TripType[]>([]);
+  const [trips, setTrips] = useState<TripsFromFB[]>([]);
 
   const currentGame = useParams().gameId;
 
@@ -22,7 +22,7 @@ export default function TripsBoard() {
         console.log('trips : ', querySnapshot)
         let trips: DocumentData = [];
         querySnapshot.docs.forEach((doc) => {
-          trips.push(doc.data() as TripType);
+          trips.push(doc.data() as TripsFromFB);
         })
         console.log(trips)
         setTrips(trips.filter((element: TripsFromFB) => element.trip.destin === currentGame));

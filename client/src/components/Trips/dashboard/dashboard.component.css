@@ -1,3 +1,109 @@
-#dashboard{
-    color: black;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: hsl(220, 41%, 16%) !important;
+    background-image: radial-gradient(650px circle at 0% 0%,
+            hsl(218, 41%, 35%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%),
+        radial-gradient(1250px circle at 100% 100%,
+            hsl(218, 41%, 45%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%);
+}
+
+.btn {
+    border-radius: 35px;
+}
+
+#card-custom-dash {
+    width: 350px;
+    height: 500px;
+    margin: 10rem;
+    /* background: hsla(0, 0%, 100%, 0.20);
+    backdrop-filter: blur(50px);
+    border-radius: 15px; */
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(9.4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#navbar-custom {
+    background: rgba(255, 255, 255, 0.2);
+    color: aliceblue;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(9.4px);
+
+}
+
+strong {
+    font-weight: bold;
+}
+
+#shape-1 {
+    border-radius: 28% 72% 48% 52% / 42% 67% 33% 58%;
+    height: 220px;
+    width: 220px;
+    background: radial-gradient(#44006b, #ad1fff);
+    bottom: 80px;
+    z-index: -1;
+}
+
+/* These are the KEY styles - you can add them directly to any object you want in your project */
+#shape-2 {
+    border-radius: 21% 79% 48% 52% / 72% 24% 76% 28%;
+
+    /* These are ADDITIONAL styles - add them if you want an object exactly like in the demo above */
+    width: 300px;
+    height: 300px;
+    top: 10px;
+    right: 5px;
+
+    background: #ad5389;
+    background: -webkit-linear-gradient(to right,
+            #3c1053,
+            #ad5389);
+    background: linear-gradient(to right,
+            #3c1053,
+            #ad5389);
+    z-index: -10;
+}
+
+table {
+    color: white;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(9.4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+img {
+    border-radius: 10px;
+}
+
+.form-floating input:valid,
+.form-floating input:focus {
+    font-size: 0.7rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    color: #333;
+    font-size: 16px;
+    padding: 10px 0;
+    display: block;
+    width: 100%;
+    /* backdrop-filter: blur(7.4px); */
 }

@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -21,17 +21,29 @@ body {
     border-radius: 35px;
 }
 
-#card-custom {
-    width: 350px;
+#card-custom-signup {
+    width: 350px; 
     height: 500px;
     margin: 10rem;
-
+    /* background: hsla(0, 0%, 100%, 0.20);
+    backdrop-filter: blur(50px);
+    border-radius: 15px; */
+    /* From https://css.glass */
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(7.4px);
     -webkit-backdrop-filter: blur(9.4px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#navbar-custom {
+    background: rgba(255, 255, 255, 0.2);
+    color: aliceblue;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(9.4px);
+
 }
 
 strong {
@@ -47,9 +59,11 @@ strong {
     z-index: -1;
 }
 
+/* These are the KEY styles - you can add them directly to any object you want in your project */
 #shape-2 {
     border-radius: 21% 79% 48% 52% / 72% 24% 76% 28%;
 
+    /* These are ADDITIONAL styles - add them if you want an object exactly like in the demo above */
     width: 300px;
     height: 300px;
     top: 10px;
@@ -64,12 +78,32 @@ strong {
             #ad5389);
     z-index: -10;
 }
-h1{
-    color: hsl(218, 91%, 95%);
+
+table {
+    color: white;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.4px);
+    -webkit-backdrop-filter: blur(9.4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
-h5 {
-    color: hsl(218, 91%, 90%);
+
+img {
+    border-radius: 10px;
 }
-p{
-    color: hsl(218, 91%, 85%);
-} */
+
+.form-floating input:valid,
+.form-floating input:focus {
+    font-size: 0.7rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    color: #333;
+    font-size: 16px;
+    padding: 10px 0;
+    display: block;
+    width: 100%;
+    /* backdrop-filter: blur(7.4px); */
+}
